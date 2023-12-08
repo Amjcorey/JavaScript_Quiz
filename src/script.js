@@ -49,13 +49,48 @@ function init () {
 
 // Start, generate quiz
 function generateQuiz(questions, quizContainer, resultsContainer, submitButton) {
-    //Show questions
-    function showQuestions(questions, quizContainer){}
+    console.log('Quiz has started');
+    timeSet = 120;
+    id = 0;
+    score = 0;
+    lastQuestion = false;
+    
+   
+    function showQuestions(questions, quizContainer){
+    // A place to store the output and user's answer choice
+        let output = [];
+        let answers;
+
+        // For each question
+        for(var i=0; i<questions.length; i++) {
+            //Need to first reset the list of answers
+            answers = [];
+
+            // For each available answer to the question
+            for(letter in questions[i].answers){
+                // ... you'll add an HTML radio button
+                answers.push(
+                    '<label>'
+                    + '<input type="radio" name="question' + i +'" value="'+letter+'">'
+                    + letter + ': '
+                    + questions[i].answers[letter]
+                    + '</label>'
+                );
+            }
+        }
+    }
 
     //Show results
     function showResults(questions, quizContainer, resultsContainer){}
 
+     //Show questions
+     showQuestions(questions,quizContainer);
+
+     submitButton.onclick = function() {
+        showResults(questions, quizContainer, resultsContainer);
+    }
 }
+   
 
 
 //Initial loading page
