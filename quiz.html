@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JavaScript Code Quiz</title>
+    <link rel="stylesheet" href="src/style.css">
+    
+</head>
+<body>
+    <!-- Header showing results & timer -->
+    <header>
+        <div class="header">
+            <div class="view-results" id="viewResults">
+                view results
+            </div>
+    
+            <div class="card timer">
+                <div>
+                    Time : <span id="countDown">00</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+ <!-- Main section/container hosting quiz questions and results container -->
+ <div class="main">
+    <main>
+
+         <!-- Pre-quiz container -->
+        <div class="start-message" id="startMessage">
+        <h2>
+            Welcome to the JavaScript Code Quiz!
+        </h2>
+
+        <p>
+            Click below to get the quiz started.
+        </p>
+
+        <button class="start-button" id="startButton">
+            Start Quiz
+        </button>
+        
+    </div>
+
+     <!-- Results, post-quiz container -->
+     <section>
+        <h3>
+            You finished !!
+        </h3>
+        <p>
+            You completed the quiz in <span id="quizTimerEnd">100</span> seconds. Nice job!
+        </p>
+     </section>
+
+     <!-- Leader board -->
+     <!-- Quiz container -->
+    </main>
+   
+
+
+</div>
+
+
+<script type="text/JavaScript" src="src/script.js"></script>
+</body>
+</html>
