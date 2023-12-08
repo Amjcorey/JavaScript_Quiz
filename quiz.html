@@ -18,7 +18,7 @@
     
             <div class="card timer">
                 <div>
-                    Time : <span id="countDown">00</span>
+                    Time : <span id="quizTimer">00</span>
                 </div>
             </div>
         </div>
@@ -26,24 +26,28 @@
 
 
  <!-- Main section/container hosting quiz questions and results container -->
- <div class="main">
+ <div>
     <main>
 
-         <!-- Pre-quiz container -->
+         <!-- Pre-quiz and welcome page container -->
         <section class="welcome-message" id="welcomeMessage">
         <h2>
             Welcome to the JavaScript Code Quiz!
         </h2>
         <p>
-            Click below to get started.
+            Click below to get started. Good luck!
         </p>
-        <button class="start-button" id="startButton">
+        <button class="start-button" id="buttonStart">
             Start Quiz
         </button>
         
         </section>
 
+   <!-- Quiz container -->
+   <div id="quiz"></div>
+
      <!-- Results, post-quiz container -->
+    <div id="results">
      <section>
         <h3>
             You finished !!
@@ -52,9 +56,9 @@
             You completed the quiz in <span id="quizTimerEnd">100</span> seconds. Nice job!
         </p>
      </section>
-
+    </div>
      <!-- Leader board -->
-     <!-- Quiz container -->
+     <div id="leaderboard"></div>
     </main>
    
 
