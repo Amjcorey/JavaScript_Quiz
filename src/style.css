@@ -1,0 +1,39 @@
+/*   Root variables   */
+:root {
+    --main-color: rgb(128,0,128);
+}
+
+/*   Body styling  */
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/*  Style for header content, Timer, and See Results  */
+header {
+    display: flex;
+    height: 30px;
+    position: relative;
+}
+
+header .see-results {
+    position: absolute;
+    left: 0;
+
+}
+
+header .see-results:hover {
+    cursor: pointer;
+}
+
+header .card {
+    position: absolute;
+    right: 0;
+}
+
+/*   Main content styling  */
+
+/*   Form style  */
+
+/*   Button(s) styling  */
+
+/*   Leaderboard styling  */
