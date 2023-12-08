@@ -77,7 +77,16 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton) 
                     + '</label>'
                 );
             }
+            // You need to add this question and its answers to the output
+            output.push(
+                '<div class="question">' + questions[i].question + '</div>'
+                + '<div class="answers">' + answers.join('') + '</div>'
+            );
         }
+        
+    
+        // Lastly, combine the output list into one string 
+        quizContainer.innerHTML = output.join('');
     }
 
     //Show results
