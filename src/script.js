@@ -50,10 +50,6 @@ function init () {
 // Start, generate quiz
 function generateQuiz(questions, quizContainer, resultsContainer, submitButton) {
     console.log('Quiz has started');
-    timeSet = 120;
-    id = 0;
-    score = 0;
-    lastQuestion = false;
     
    
     function showQuestions(questions, quizContainer){
