@@ -1,106 +1,65 @@
-// Quiz questions
-const myQuestions = [{
-    question: "JavaScript is the same as Java. True or false?",
-    answer: [
-        {text: "True, JavaScript is a stripped-down version of Java.", isCorrect: false },
-        {text: "False, JavaScripts' syntax is loosely base on Java.", isCorrect: true }
+// Questions for the quiz{
+
+const questions = [
+    {
+        question: "True or False: Java Script is case sensitive",
+        answers: [
+            { text: "True", correct: true},
+            { text: "False", correct: false},
         ]
-},
-
-{
-        qustion: "JavaScript is what type of language?",
-        answer: [
-            {text: "Object-Oriented", isCorrect: false},
-            {text: "Object-Based", isCorrect: true},
-            {text: "High-level", isCorrect: false},
-            {text: "Assembly-language", isCorrect: false}
+    },
+    
+    {
+        question: "Which definition below describes a FUNCTION in Java Script?",
+        answers: [
+        {text: "Something we use to store groups of data", correct: false },
+        {text: "A reusable block of code that performs a specific task", correct: true },
+        {text: "A way we can store a single piece of data", correct: false},
+    ]
+    },
+    
+    {
+        question: "Which syntax is used to call a function?",
+        answers: [
+            {text: "functionName()", correct: true },
+            {text: "functionName", correct: false },
+            {text: "functionName[]", correct: false},
         ]
-}
-];
-
-
-//HTNML Query Elements
-
-let quizTimer = document.getElementById("quizTimer"); //Timer
-let welcomePage = document.getElementById("welcomeMessage"); //Homepage
-let quizContainer = document.getElementById("quiz"); //Quiz + questions
-let resultsContainer = document.getElementById("results"); //Results
-let leaderboardContainer = document.getElementById("leaderboard"); //Leaderboard
-
-//Initial global variables
-let id = 0;
-let score = 0;
-let timerCount = 0;
-let timer;
-let timeTaken;
-let lastQuestion = false;
-let result;
-
-
-// Init function that loads the main page
-function init () {
-    quizTimer.textContent = "00";
-    welcomePage.style.display = 'block';
-    quizContainer.style.display = 'none';
-    resultsContainer.style.display = 'none';
-    leaderboardContainer.style.display = 'none';
-
-}
-
-// Start, generate quiz
-function generateQuiz(questions, quizContainer, resultsContainer, submitButton) {
-    console.log('Quiz has started');
+    },
     
-   
-    function showQuestions(questions, quizContainer){
-    // A place to store the output and user's answer choice
-        let output = [];
-        let answers;
-
-        // For each question
-        for(var i=0; i<questions.length; i++) {
-            //Need to first reset the list of answers
-            answers = [];
-
-            // For each available answer to the question
-            for(letter in questions[i].answers){
-                // ... you'll add an HTML radio button
-                answers.push(
-                    '<label>'
-                    + '<input type="radio" name="question' + i +'" value="'+letter+'">'
-                    + letter + ': '
-                    + questions[i].answers[letter]
-                    + '</label>'
-                );
-            }
-            // You need to add this question and its answers to the output
-            output.push(
-                '<div class="question">' + questions[i].question + '</div>'
-                + '<div class="answers">' + answers.join('') + '</div>'
-            );
-        }
-        
+    {
+        question: "How do you start a FOR loop?",
+        answers: [
+           {text: "for (i = 0; i < 5; i++)", correct: true},
+           {text: "for (i = 0; i < 5)", correct: false},
+           {text: "for (i = 0; i < 5; i--)", correct: false},
+        ]
+    },
     
-        // Lastly, combine the output list into one string 
-        quizContainer.innerHTML = output.join('');
+    {
+        question: "How do you start a WHILE loop?",
+        answers: [
+            {text: "while (i < 5; i++)", correct: false},
+            {text: "while (i < 5; i--)", correct:false },
+            {text: "while (i < 5)", correct: true},
+        ]
+    },
+    
+    {
+        question: "What does || mean?",
+        answers: [
+            {text: "OR", correct: true}, 
+            {text: "AND", correct: false},
+            {text: "NOT", correct: false},
+        ]
+    },
+    
+    {
+        question: "What does && mean?",
+        answers: [
+            {text: "OR", correct: false},
+            {text: "NOT", correct: false}, 
+            {text: "AND", correct: true},
+        ]
     }
-
-    //Show results
-    function showResults(questions, quizContainer, resultsContainer){}
-
-     //Show questions
-     showQuestions(questions,quizContainer);
-
-     submitButton.onclick = function() {
-        showResults(questions, quizContainer, resultsContainer);
-    }
-}
-   
-
-
-//Initial loading page
-init ();
-
-//Start button
-goBackButton.addEventListener("click", init, false);
-startButton.addEventListener("click", startQuiz, false);
+    ];
