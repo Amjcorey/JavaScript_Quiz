@@ -1,39 +1,62 @@
 /*   Root variables   */
 :root {
-    --main-color: rgb(128,0,128);
+    --main-color: #20004d;
 }
 
-/*   Body styling  */
+* {
+    font-family: 'Poppins', sans-serif;    
+    margin: 0;
+    padding: 0;
+
+}
+
 body {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background: #20004d;
 }
 
-/*  Style for header content, Timer, and See Results  */
-header {
-    display: flex;
-    height: 30px;
-    position: relative;
+.app {
+    background: white;
+    border-radius: 8px;
+    margin: 100px auto 0;
+    max-width: 600px;
+    padding: 30px;
+    width: 90%;
 }
 
-header .see-results {
-    position: absolute;
-    left: 0;
-
+.app h1 {
+    color:#20004d;
+    border-bottom: 2px solid;
+    font-size: 32px;
+    font-weight: 600;
+    padding: 18px;
 }
 
-header .see-results:hover {
+/* Class styling for questions  */
+
+.btn {
+    background: white;
+    border-radius: 8px;
+    color: #222;
     cursor: pointer;
+    font-weight: 500;
+    margin: 8px 0;
+    padding: 10px;
+    text-align: left;
+    width: 100;
 }
 
-header .card {
-    position: absolute;
-    right: 0;
+.btn:hover {
+
 }
 
-/*   Main content styling  */
+.quiz {
+    padding: 20px;
+}
 
-/*   Form style  */
+.quiz h2 {
+    color: var(--main-color);
+    font-size: 18px;
+    font-weight: 600;
+}
 
-/*   Button(s) styling  */
 
-/*   Leaderboard styling  */
