@@ -63,3 +63,7 @@ const questions = [
         ]
     }
     ];
+
+    //Assign variables to HTML elements
+    let questionElement = document.getElementById("question");
+    let answerButtons = document.getElementById("answer-buttons");
