@@ -1,14 +1,6 @@
 
 
-//Assign const variables to HTML id elements
-
-const questionElement = document.getElementById("question");
-const answerButtons = document.getElementById("answer-buttons");
-const nextButton = document.getElementById("next-button ");
-
-
-// Questions for the quiz{
-
+// Questions for the quiz
 const questions = [
     {
         question: "True or False: Java Script is case sensitive",
@@ -20,16 +12,16 @@ const questions = [
     {
         question: "Which definition below describes a FUNCTION in Java Script?",
         answers: [
-        {text: "Something we use to store groups of data", correct: false },
-        {text: "A reusable block of code that performs a specific task", correct: true },
+        {text: "Something we use to store groups of data", correct: false},
+        {text: "A reusable block of code that performs a specific task", correct: true},
         {text: "A way we can store a single piece of data", correct: false},
     ]
     },
     {
         question: "Which syntax is used to call a function?",
         answers: [
-            {text: "functionName()", correct: true },
-            {text: "functionName", correct: false },
+            {text: "functionName()", correct: true},
+            {text: "functionName", correct: false},
             {text: "functionName[]", correct: false},
         ]
     },
@@ -70,44 +62,52 @@ const questions = [
 
 
 
-// Create variables
+//Elements
+
+let questionElement = document.getElementById("question");
+let answerButtons = document.getElementById("answer-buttons");
+let nextButton = document.getElementById("next-button");
+
+//Default values
+
 let currentQuestionIndex = 0; //index will start from 0 
 let score = 0;
 
 
 
+// Function to begin quiz
+//once started, should reset the current question and score to 0; 
 
-// Function to begin quiz, once started, should reset the current question and score to 0; 
+
 
 function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
+
     //Change text to "Next" because at the end of the quiz it will change to retry quiz
     nextButton.innerHTML = "Next"; 
-
-    //Call new function to display a new/different question
-    showQuestion();
+    displayQuestions();
 }
 
-//Make function to display first set of questions with the question number
-function showQuestion() {
-   
-    let currentQuestion = questions[currentQuestionIndex];
-    
-    //Display the first question when set at 0 and display next question when add 1 to the index. Also show the question number
-    let questionNumber = currentQuestionIndex + 1;
-    
-    //change HTML text to display the question
-    questionElement.innerHTML = questionNumber + ". " + currentQuestion.question;
 
+
+
+
+//Make function to display first set of questions with the question number
+//Display the first question when set at 0 and display next question when add 1 to the index. Also show the question number
+function displayQuestions() {
+    let currentQuestion = questions[currentQuestionIndex];
+    let questionNumber = currentQuestionIndex + 1;
+
+    questionElement.innerHTML = questionNumber + ". " + currentQuestion.question;
     //Display answer options
-    currentQuestion.answers.forEarch(answer => {
+    currentQuestion.answers.forEarch(answers => {
         //Display new button
         let button = document.createElement("button");
         //That will display the answers text
-        button.innerHTML = answer.text;
+        button.innerHTML = answers.text;
         button.classList.add("btn");
-        answerButton.appendChild(button);
+        answerButtons.appendChild(button);
     });
 }  
 
