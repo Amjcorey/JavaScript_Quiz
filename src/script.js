@@ -68,10 +68,13 @@ const questions = [
     }
 ];
 
-// Create variables
 
+
+// Create variables
 let currentQuestionIndex = 0; //index will start from 0 
 let score = 0;
+
+
 
 
 // Function to begin quiz, once started, should reset the current question and score to 0; 
@@ -88,10 +91,22 @@ function startQuiz() {
 
 //Make function to display first set of questions
 function showQuestion() {
+   
     let currentQuestion = questions[currentQuestionIndex];
-//Display the first question when set at 0 and display next question when add 1 to the index. Also show the question number
+    
+    //Display the first question when set at 0 and display next question when add 1 to the index. Also show the question number
     let questionNumber = currentQuestionIndex + 1;
     
-    //change HTML text
+    //change HTML text to display question elem,emnt in the HTML
     questionElement.innerHTML = questionNumber + ". " + currentQuestion.question;
-}
+
+    //Display answer options
+    currentQuestion.answers.forEarch(answer => {
+        //Display new button
+        let button = document.createElement("button");
+        //That will display the answers text
+        button.innerHTML = answer.text;
+        button.classList.add("btn");
+        answerButton.appendChild(button);
+    });
+}   
