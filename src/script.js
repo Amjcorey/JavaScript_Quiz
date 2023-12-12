@@ -89,7 +89,7 @@ function startQuiz() {
     showQuestion();
 }
 
-//Make function to display first set of questions
+//Make function to display first set of questions with the question number
 function showQuestion() {
    
     let currentQuestion = questions[currentQuestionIndex];
@@ -97,7 +97,7 @@ function showQuestion() {
     //Display the first question when set at 0 and display next question when add 1 to the index. Also show the question number
     let questionNumber = currentQuestionIndex + 1;
     
-    //change HTML text to display question elem,emnt in the HTML
+    //change HTML text to display the question
     questionElement.innerHTML = questionNumber + ". " + currentQuestion.question;
 
     //Display answer options
@@ -109,4 +109,7 @@ function showQuestion() {
         button.classList.add("btn");
         answerButton.appendChild(button);
     });
-}   
+}  
+
+// 
+startQuiz();
