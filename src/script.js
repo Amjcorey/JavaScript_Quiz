@@ -100,16 +100,41 @@ function displayQuestions() {
     let questionNumber = currentQuestionIndex + 1;
 
     questionElement.innerHTML = questionNumber + ". " + currentQuestion.question;
-    //Display answer options
-    currentQuestion.answers.forEarch(answers => {
-        //Display new button
-        let button = document.createElement("button");
-        //That will display the answers text
-        button.innerHTML = answers.text;
+//Display answer options
+    currentQuestion.answers.forEarch(answer => {
+//Display new button
+        const button = document.createElement("button");
+//That will display the answers text
+        button.innerHTML = answer.text;
         button.classList.add("btn");
         answerButtons.appendChild(button);
+//Know when the correct answer is selected
+        if(answer.correct) {
+            button.dataset.correct = answer.correct;
+        }
+//Event listener when user selects an answer, then need to call new function Select Answer
+        button.addEventListener("click", selectAnswer);
     });
 }  
+
+
+// Reset quiz/questions function
+function resetState() {
+    nextButton.style.display = "none";
+    while(answerButtons.firstChild) {
+        answerButtons.removeChild(answerButtons.firstChild);
+    }
+}
+
+function selectAnswer(e) {
+    const buttonClicked = e.target;
+    const isCorrect = buttonClicked.dataset.correct === "true";
+    if(isCorrect){
+        buttonClicked.classList.add("correct");
+    } else {
+        buttonClicked.classList.add("incorrect");
+    }
+}
 
 // 
 startQuiz();
