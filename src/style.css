@@ -50,8 +50,9 @@ body {
     width: 100%;
 }
 
-.btn:hover {
-    background: var(--second-color);
+/* Styling to make sure hover effect will work when the button is not DISABLED */
+.btn:hover:not([disabled]) {
+    background: var(--main-color);
     box-shadow: 5px 5px lightgrey;
     color: #fff;
 }

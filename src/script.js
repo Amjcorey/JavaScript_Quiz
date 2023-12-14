@@ -7,22 +7,23 @@ const questions = [
         answers: [
             { text: "True", correct: true},
             { text: "False", correct: false},
+            { text: "None", correct: false},
         ]
     },
     {
         question: "Which definition below describes a FUNCTION in Java Script?",
         answers: [
-        {text: "Something we use to store groups of data", correct: false},
-        {text: "A reusable block of code that performs a specific task", correct: true},
-        {text: "A way we can store a single piece of data", correct: false},
-    ]
+            {text: "Something we use to store groups of data", correct: false},
+            {text: "A reusable block of code that performs a specific task", correct: true},
+            {text: "A way we can store a single piece of data", correct: false},
+        ]
     },
     {
         question: "Which syntax is used to call a function?",
         answers: [
-            {text: "functionName()", correct: true},
-            {text: "functionName", correct: false},
-            {text: "functionName[]", correct: false},
+            { text: "function Name()", correct: true},
+            { text: "functionN ame", correct: false},
+            { text: "function Name[]", correct: false},
         ]
     },
     {
@@ -68,38 +69,42 @@ const nextButton = document.getElementById("next-button");
 
 //Default values
 
-let currentQuestionIndex = 0; //index will start from 0 
+let currentQuestionIndex = 0;
 let score = 0;
+
+
 // Function to begin quiz once started, should reset the current question and score to 0; 
 function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
 //Change text to "Next" because at the end of the quiz it will change to retry quiz
-    nextButton.innerHTML = "Next"; 
+    nextButton.innerHTML = "Next question"; 
     displayQuestion();
 }
 
 
 //Make function to display first set of questions with the question number
 //Display the first question when set at 0 and display next question when add 1 to the index. Also show the question number
+//Event listener when user selects an answer, then need to call new function Select Answer
+
 function displayQuestion() {
-    resetState();
     let currentQuestion = questions[currentQuestionIndex];
     let questionNumber = currentQuestionIndex + 1;
     questionElement.innerHTML = questionNumber + ". " + currentQuestion.question;
-//Display answer options -- 
-    currentQuestion.answers.forEarch(answer => {
+    
+   currentQuestion.answers.forEarch((answer) => {
         const button = document.createElement("button");
         //That will display the answers text
         button.innerHTML = answer.text;
         button.classList.add("btn");
         answerButtons.appendChild(button);
+
         //Know when the correct answer is selected
         if(answer.correct) {
             button.dataset.correct = answer.correct;
         }
-//Event listener when user selects an answer, then need to call new function Select Answer
-        button.addEventListener("click", selectAnswer);
+        button.addEventListener("click", clickedAnswer);
+        console.log(currentQuestion);
     });
 }  
 
@@ -112,9 +117,9 @@ function resetState() {
     }
 }
 
-function selectAnswer(event) {
+function clickedAnswer(event) {
     event.preventDefault();
-    const buttonClicked = e.target;
+    const buttonClicked = event.target;
     const isCorrect = buttonClicked.dataset.correct === "true";
     if(isCorrect) {
         buttonClicked.classList.add("correct");
@@ -134,7 +139,6 @@ function selectAnswer(event) {
 
 //Display user score
 function displayScore() {
-    resetState();
     questionElement.innerHTML = `Nice! You scored ${score} out of ${questions.length}.`;
     nextButton.innerHTML = "Try again.";
     nextButton.style.display = "block";
@@ -150,5 +154,4 @@ function nextButtonHandle() {
     }
 }
 
-// 
 startQuiz();
