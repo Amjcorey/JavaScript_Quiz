@@ -64,9 +64,9 @@ const questions = [
 
 //Elements
 
-let questionElement = document.getElementById("question");
-let answerButtons = document.getElementById("answer-buttons");
-let nextButton = document.getElementById("next-button");
+const questionElement = document.getElementById("question");
+const answerButtons = document.getElementById("answer-buttons");
+const nextButton = document.getElementById("next-button");
 
 //Default values
 
@@ -83,19 +83,16 @@ let score = 0;
 function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
-
-    //Change text to "Next" because at the end of the quiz it will change to retry quiz
+//Change text to "Next" because at the end of the quiz it will change to retry quiz
     nextButton.innerHTML = "Next"; 
     displayQuestions();
 }
 
 
-
-
-
 //Make function to display first set of questions with the question number
 //Display the first question when set at 0 and display next question when add 1 to the index. Also show the question number
 function displayQuestions() {
+    resetState();
     let currentQuestion = questions[currentQuestionIndex];
     let questionNumber = currentQuestionIndex + 1;
 
@@ -115,6 +112,7 @@ function displayQuestions() {
 //Event listener when user selects an answer, then need to call new function Select Answer
         button.addEventListener("click", selectAnswer);
     });
+    e.preventDefault();
 }  
 
 
@@ -129,7 +127,7 @@ function resetState() {
 function selectAnswer(e) {
     const buttonClicked = e.target;
     const isCorrect = buttonClicked.dataset.correct === "true";
-    if(isCorrect){
+    if(isCorrect) {
         buttonClicked.classList.add("correct");
     } else {
         buttonClicked.classList.add("incorrect");
