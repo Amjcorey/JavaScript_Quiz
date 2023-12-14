@@ -60,9 +60,7 @@ const questions = [
     }
 ];
 
-
-
-//Elements
+//HTML Elements
 
 const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
@@ -72,47 +70,37 @@ const nextButton = document.getElementById("next-button");
 
 let currentQuestionIndex = 0; //index will start from 0 
 let score = 0;
-
-
-
-// Function to begin quiz
-//once started, should reset the current question and score to 0; 
-
-
-
+// Function to begin quiz once started, should reset the current question and score to 0; 
 function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
 //Change text to "Next" because at the end of the quiz it will change to retry quiz
     nextButton.innerHTML = "Next"; 
-    displayQuestions();
+    displayQuestion();
 }
 
 
 //Make function to display first set of questions with the question number
 //Display the first question when set at 0 and display next question when add 1 to the index. Also show the question number
-function displayQuestions() {
+function displayQuestion() {
     resetState();
     let currentQuestion = questions[currentQuestionIndex];
     let questionNumber = currentQuestionIndex + 1;
-
     questionElement.innerHTML = questionNumber + ". " + currentQuestion.question;
-//Display answer options
+//Display answer options -- 
     currentQuestion.answers.forEarch(answer => {
-//Display new button
         const button = document.createElement("button");
-//That will display the answers text
+        //That will display the answers text
         button.innerHTML = answer.text;
         button.classList.add("btn");
         answerButtons.appendChild(button);
-//Know when the correct answer is selected
+        //Know when the correct answer is selected
         if(answer.correct) {
             button.dataset.correct = answer.correct;
         }
 //Event listener when user selects an answer, then need to call new function Select Answer
         button.addEventListener("click", selectAnswer);
     });
-    e.preventDefault();
 }  
 
 
@@ -124,13 +112,41 @@ function resetState() {
     }
 }
 
-function selectAnswer(e) {
+function selectAnswer(event) {
+    event.preventDefault();
     const buttonClicked = e.target;
     const isCorrect = buttonClicked.dataset.correct === "true";
     if(isCorrect) {
         buttonClicked.classList.add("correct");
+        score++;
     } else {
         buttonClicked.classList.add("incorrect");
+    }
+//prevent multiple answers from being selected; show correct answer if user choose incorrectly
+    Array.from(answerButtons.children).forEach(button => {
+        if(button.dataset.correct === "true"){
+            button.classList.add("correct");
+        }
+        button.disabled = true;
+    });
+    nextButton.style.display = "block";
+}
+
+//Display user score
+function displayScore() {
+    resetState();
+    questionElement.innerHTML = `Nice! You scored ${score} out of ${questions.length}.`;
+    nextButton.innerHTML = "Try again.";
+    nextButton.style.display = "block";
+}
+
+//Enable button to display the next question
+function nextButtonHandle() {
+    currentQuestionIndex++;
+    if(currentQuestionIndex < questions.length){
+        displayQuestion();
+    } else {
+        displayScore();
     }
 }
 
