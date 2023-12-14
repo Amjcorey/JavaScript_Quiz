@@ -74,11 +74,11 @@ let score = 0;
 
 
 // Function to begin quiz once started, should reset the current question and score to 0; 
-function startQuiz() {
+function startQuiz(){
     currentQuestionIndex = 0;
     score = 0;
 //Change text to "Next" because at the end of the quiz it will change to retry quiz
-    nextButton.innerHTML = "Next question"; 
+    nextButton.innerHTML = "Go to next question"; 
     displayQuestion();
 }
 
@@ -100,12 +100,13 @@ function displayQuestion() {
         answerButtons.appendChild(button);
 
         //Know when the correct answer is selected
-        if(answer.correct) {
+        if
+        (answer.correct) {
             button.dataset.correct = answer.correct;
         }
         button.addEventListener("click", clickedAnswer);
-        console.log(currentQuestion);
     });
+    console.log(currentQuestion);
 }  
 
 
