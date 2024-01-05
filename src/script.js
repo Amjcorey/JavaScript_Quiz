@@ -65,7 +65,7 @@ const questions = [
 
 const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
-const nextButton = document.getElementById("next-button");
+const nextButton = document.getElementById("next-btn");
 
 //Default values
 
@@ -155,4 +155,15 @@ function nextButtonHandle() {
     }
 }
 
+<<<<<<< Updated upstream
+=======
+nextButton.addEventListener("click", ()=> {
+    if (currentQuestionIndex < questions.length) {
+        nextButtonHandle();
+    } else {
+        startQuiz();
+    }
+});
+
+>>>>>>> Stashed changes
 startQuiz();
