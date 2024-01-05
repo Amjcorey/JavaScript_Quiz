@@ -1,16 +1,16 @@
 /*   Root variables   */
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;    
+    margin: 0;
+    padding: 0;
+}
+
 :root {
     --main-color: #20004d;
     --second-color: blueviolet;
     --correct: #9aea9a;
     --incorrect: #ff9393;
-}
-
-* {
-    font-family: 'Poppins', sans-serif;    
-    margin: 0;
-    padding: 0;
-
 }
 
 body {
@@ -33,6 +33,16 @@ body {
     font-size: 32px;
     font-weight: 600;
     padding: 18px;
+}
+
+.quiz {
+    padding: 20px 0;
+}
+
+.quiz h2 {
+    color: var(--main-color);
+    font-size: 18px;
+    font-weight: 600;
 }
 
 /* Class styling for questions and buttons */
@@ -58,19 +68,9 @@ body {
 }
 
 
-.quiz {
-    padding: 20px;
-}
-
-.quiz h2 {
-    color: var(--main-color);
-    font-size: 18px;
-    font-weight: 600;
-}
-
 /* ID styling */
 
-#next-button {
+#next-btn {
     background: var(--second-color);
     color: #fff;
     cursor: pointer;
@@ -83,7 +83,6 @@ body {
     text-align: center;
     transition: all 0.1s;
 }
-
 
 /* style for the correct and incorrect answer */
 .correct {
