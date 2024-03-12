@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="src/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+   
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
       rel="stylesheet"
@@ -15,14 +16,50 @@
   </head>
   <body>
     <div class="container">
-      <h1>Simple JavaScript Quiz</h1>
-      <div class="quiz">
-        <h2 id="question">Question</h2>
-        <div id="answer-buttons">
-          <button class="btn">Answer 1</button>
-          <button class="btn">Answer 2</button>
-          <button class="btn">Answer 3</button>
+      <header>
+        <p id="results-link">
+          <a href="#" id="display-scores">Click</a> to view previous player
+          scores.
+        </p>
+
+        <div class="timer" id="count-down">
+          Time: <span id="time-clock">60</span> seconds
         </div>
+      </header>
+      <main>
+        <section class="home" id="home-container">
+          <h1>Simple JavaScript Quiz</h1>
+          <p id="introduction">
+            This is a multiple choice quiz about JavaScript.
+          </p>
+          <button class="button-start" id="start-btn" onclick="startQuiz()">
+            Click here to get started.
+          </button>
+        </section>
+
+        <div class="quiz-container">
+          <section>
+            <h2 id="question">Questions</h2>
+            <div id="answer-buttons">
+              <button id="btn1"></button>
+              <button id="btn2"></button>
+              <button id="btn3"></button>
+              <button id="btn4"></button>
+            </div>
+            <button id="next-btn">Next</button>
+          </section>
+        </div>
+
+        <section class="post-container" id="post-quiz-container">
+          <h3>Quiz Complete</h3>
+          <p>Time to complete quiz: <span id="score">000</span></p>
+          <form id="init-form">
+            <input type="text" id="initialId" placeholder="Type here" />
+            <input type="submit" id="submitInitBtn" value="Submit" />
+          </form>
+        </section>
+      </main>
+
         <button id="next-btn">
             Next
         </button>
