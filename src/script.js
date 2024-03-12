@@ -1,3 +1,9 @@
+//Default values
+let currentQuestionIndex = 0;
+let score = 0;
+let time = 60;
+
+
 // Questions
 const questions = [
   {
@@ -60,17 +66,21 @@ const questions = [
 ];
 
 //HTML Elements
-const questionElement = document.getElementById("question");
-const answerButtons = document.getElementById("answer-buttons");
-const nextButton = document.getElementById("next-btn");
+var countDown = document.querySelector("#count-down");
+var timeClock = document.querySelector("#time-clock");
 
-//Default values
-let currentQuestionIndex = 0;
-let score = 0;
+
+var questionElement = document.getElementById("question");
+var answerButtons = document.getElementById("answer-buttons");
+var answerSelection = ["#btn1", "#btn2", "#btn3", "#btn4"];
+var nextButton = document.getElementById("next-btn");
+
 
 function startQuiz() {
-  currentQuestionIndex = 0;
-  score = 0;
+  console.log("Quiz started");
+  document.getElementById('home-container').style.display = 'none';
+  document.getElementById('start-btn').style.display = 'none';
+  document.getElementById('results-link').style.display = 'none';
   nextButton.innerHTML = "Next question";
   displayQuestion();
 }
@@ -79,27 +89,28 @@ function startQuiz() {
 //Display the first question when set at 0 and display next question when add 1 to the index. Also show the question number
 //Event listener when user selects an answer, then need to call new function Select Answer
 
-function displayQuestion() {
-  let currentQuestion = questions[currentQuestionIndex];
-  let questionNumber = currentQuestionIndex + 1;
-  questionElement.innerHTML = questionNumber + ". " + currentQuestion.question;
+ function displayQuestion() {
 
-  currentQuestion.answers.forEach((answer) => {
-    const button = document.createElement("button");
+   let currentQuestion = questions[currentQuestionIndex];
+   let questionNumber = currentQuestionIndex + 1;
+   questionElement.innerHTML = questionNumber + ". " + currentQuestion.question;
 
-    button.innerHTML = answer.text;
-    button.classList.add("btn");
-    answerButtons.appendChild(button);
+   currentQuestion.answers.forEach((answer) => {
+     const button = document.createElement("button");
 
-    if (answer.correct) {
-      button.dataset.correct = answer.correct;
-    }
-    button.addEventListener("click", clickedAnswer);
-  });
-  console.log(currentQuestion);
+     button.innerHTML = answer.text;
+     button.classList.add("btn");
+     answerButtons.appendChild(button);
+
+     if (answer.correct) {
+       button.dataset.correct = answer.correct;
+     }
+     button.addEventListener("click", clickedAnswer);
+   });
+   console.log(currentQuestion);
 }
 
-// Reset quiz/questions
+ // Reset quiz/questions
 function resetState() {
   nextButton.style.display = "none";
   while (answerButtons.firstChild) {
@@ -107,17 +118,18 @@ function resetState() {
   }
 }
 
-function clickedAnswer(event) {
-  event.preventDefault();
-  const buttonClicked = event.target;
-  const isCorrect = buttonClicked.dataset.correct === "true";
-  if (isCorrect) {
-    buttonClicked.classList.add("correct");
-    score++;
-  } else {
-    buttonClicked.classList.add("incorrect");
-  }
-  //prevent multiple answers from being selected; show correct answer if user choose incorrectly
+ function clickedAnswer(event) {
+   event.preventDefault();
+   const buttonClicked = event.target;
+   const isCorrect = buttonClicked.dataset.correct === "true";
+   if (isCorrect) {
+     buttonClicked.classList.add("correct");
+     score++;
+   } else {
+     buttonClicked.classList.add("incorrect");
+   }
+
+   //prevent multiple answers from being selected; show correct answer if user choose incorrectly
   Array.from(answerButtons.children).forEach((button) => {
     if (button.dataset.correct === "true") {
       button.classList.add("correct");
@@ -127,14 +139,14 @@ function clickedAnswer(event) {
   nextButton.style.display = "block";
 }
 
-//Display user score
+// //Display user score
 function displayScore() {
   questionElement.innerHTML = `Nice! You scored ${score} out of ${questions.length}.`;
   nextButton.innerHTML = "Try again.";
   nextButton.style.display = "block";
 }
 
-//Enable button to display the next question
+ //Function for button to display next question
 function nextButtonHandle() {
   currentQuestionIndex++;
   if (currentQuestionIndex < questions.length) {
@@ -144,7 +156,7 @@ function nextButtonHandle() {
   }
 }
 
-nextButton.addEventListener("click", () => {
+ nextButton.addEventListener("click", () => {
     if (currentQuestionIndex < questions.length) {
         nextButtonHandle();
     } else {
@@ -152,4 +164,4 @@ nextButton.addEventListener("click", () => {
     }
 });
 
-startQuiz();
+// startQuiz();
