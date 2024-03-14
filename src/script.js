@@ -1,10 +1,8 @@
-//Default values
 let currentQuestionIndex = 0;
-let score = 0;
+let score =  0;
 let time = 60;
 
-
-// Questions
+// Questions array
 const questions = [
   {
     question: "True or False: JavaScript is case sensitive",
@@ -66,21 +64,19 @@ const questions = [
 ];
 
 //HTML Elements
-var countDown = document.querySelector("#count-down");
-var timeClock = document.querySelector("#time-clock");
-
-
-var questionElement = document.getElementById("question");
-var answerButtons = document.getElementById("answer-buttons");
-var answerSelection = ["#btn1", "#btn2", "#btn3", "#btn4"];
-var nextButton = document.getElementById("next-btn");
-
+// var countDown = document.querySelector("#count-down");
+// var timeClock = document.querySelector("#time-clock");
+let questionElement = document.getElementById("question");
+let answerButtons = document.getElementById("answer-buttons");
+let answerSelection = ["#btn1", "#btn2", "#btn3", "#btn4"];
+let nextButton = document.getElementById("next-btn");
 
 function startQuiz() {
   console.log("Quiz started");
   document.getElementById('home-container').style.display = 'none';
   document.getElementById('start-btn').style.display = 'none';
   document.getElementById('results-link').style.display = 'none';
+  document.getElementById('post-quiz-container').style.display = 'none';
   nextButton.innerHTML = "Next question";
   displayQuestion();
 }
@@ -95,6 +91,7 @@ function startQuiz() {
    let questionNumber = currentQuestionIndex + 1;
    questionElement.innerHTML = questionNumber + ". " + currentQuestion.question;
 
+   // create buttons showing the answer choices from
    currentQuestion.answers.forEach((answer) => {
      const button = document.createElement("button");
 
@@ -107,7 +104,7 @@ function startQuiz() {
      }
      button.addEventListener("click", clickedAnswer);
    });
-   console.log(currentQuestion);
+
 }
 
  // Reset quiz/questions
@@ -162,6 +159,10 @@ function nextButtonHandle() {
     } else {
         startQuiz();
     }
+
+
+
+
 });
 
 // startQuiz();
