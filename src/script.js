@@ -76,8 +76,8 @@ let nextButton = document.getElementById("next-btn");
 
 function startQuiz() {
   console.log("Quiz started");
-   currentQuestionIndex = 0;
- score = 0;
+  currentQuestionIndex = 0;
+  score = 0;
   document.getElementById("home-container").style.display = "none";
   document.getElementById("start-btn").style.display = "none";
   document.getElementById("results-link").style.display = "none";
@@ -96,8 +96,8 @@ function displayQuestion() {
   let questionNumber = currentQuestionIndex + 1;
   questionEl.innerHTML = questionNumber + ". " + currentQuestion.question;
 
-  // create buttons showing the answer choices 
-  currentQuestion.answers.forEach(answer => {
+  // create buttons showing the answer choices
+  currentQuestion.answers.forEach((answer) => {
     const button = document.createElement("button");
     button.innerHTML = answer.text;
     button.classList.add("btn");
@@ -120,7 +120,6 @@ function resetState() {
 
 function clickedAnswer(event) {
   event.preventDefault();
-
   const buttonClicked = event.target;
   const isCorrect = buttonClicked.dataset.correct === "true";
   if (isCorrect) {
@@ -130,7 +129,7 @@ function clickedAnswer(event) {
     buttonClicked.classList.add("incorrect");
   }
   // Prevent multiple answers from being selected and show correct answer if user choose incorrectly
-  Array.from(answerButtons.children).forEach(button => {
+  Array.from(answerButtons.children).forEach((button) => {
     if (button.dataset.correct === "true") {
       button.classList.add("correct");
     }
@@ -139,15 +138,17 @@ function clickedAnswer(event) {
   nextButton.style.display = "block";
 }
 
-// //Display user score
+//Display user score
 function displayScore() {
+  resetState();
   questionEl.innerHTML = `Nice! You scored ${score} out of ${questions.length}.`;
-  nextButton.innerHTML = "Try again.";
+  nextButton.innerHTML = "Play again.";
   nextButton.style.display = "block";
 }
 
 //Function for button to display next question
 function nextButtonHandle() {
+  // Update the current question index
   currentQuestionIndex++;
   if (currentQuestionIndex < questions.length) {
     displayQuestion();
@@ -163,7 +164,5 @@ nextButton.addEventListener("click", () => {
     resetState();
   }
 });
-
-
 
 // startQuiz();
