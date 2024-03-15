@@ -67,12 +67,13 @@ const questions = [
 ];
 
 //HTML Elements
-// var countDown = document.querySelector("#count-down");
-// var timeClock = document.querySelector("#time-clock");
+let countDown = document.querySelector("#count-down");
+let timeClock = document.querySelector("#time-clock");
 let questionEl = document.getElementById("question");
 let answerButtons = document.getElementById("answer-buttons");
 let answerSelection = ["#btn1", "#btn2", "#btn3", "#btn4"];
 let nextButton = document.getElementById("next-btn");
+let timer;
 
 function startQuiz() {
   console.log("Quiz started");
@@ -81,9 +82,25 @@ function startQuiz() {
   document.getElementById("home-container").style.display = "none";
   document.getElementById("start-btn").style.display = "none";
   document.getElementById("results-link").style.display = "none";
-  document.getElementById("post-quiz-container").style.display = "none";
+  document.getElementById("results-container").style.display = "none";
   nextButton.innerHTML = "Next";
+
   displayQuestion();
+  startTimer();
+}
+
+// Start timer
+function startTimer() {
+  timer = setInterval(function() {
+    if (time <= 0) {
+      clearInterval(timer);
+      timer = null;
+      displayScore();
+    } else {
+      countDown.textContent = time;
+    }
+  time--;
+  }, 1000);
 }
 
 //Make function to display first set of questions with the question number
@@ -118,6 +135,8 @@ function resetState() {
   }
 }
 
+
+
 function clickedAnswer(event) {
   event.preventDefault();
   const buttonClicked = event.target;
@@ -138,9 +157,25 @@ function clickedAnswer(event) {
   nextButton.style.display = "block";
 }
 
+// function collectScore() {
+
+//   let initials = document.getElementById("init-form");
+//   if (!initials.value == "") {
+//     return ("Please enter initials");
+//   } 
+//   let highScore = JSON.parse(localStorage.getItem('highScore')) || [];
+//   let newScore = { initials: initials, time: time, score: score };
+//   highScore.push(newScore);
+//   highScore.sort(function(a,b) {
+//     return b.score - a.score;
+//   });  
+//   localStorage.setItem('highScore', JSON.stringify(highScore));
+// }
+
 //Display user score
 function displayScore() {
   resetState();
+  collectScore();
   questionEl.innerHTML = `Nice! You scored ${score} out of ${questions.length}.`;
   nextButton.innerHTML = "Play again.";
   nextButton.style.display = "block";
@@ -153,7 +188,7 @@ function nextButtonHandle() {
   if (currentQuestionIndex < questions.length) {
     displayQuestion();
   } else {
-    displayScore();
+    startQuiz();
   }
 }
 
@@ -161,7 +196,7 @@ nextButton.addEventListener("click", () => {
   if (currentQuestionIndex < questions.length) {
     nextButtonHandle();
   } else {
-    resetState();
+    displayScore();
   }
 });
 
