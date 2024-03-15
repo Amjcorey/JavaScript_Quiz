@@ -67,10 +67,13 @@ body {
     color: #fff;
 }
 
+.btn:disabled {
+    cursor: no-drop;
+}
 
 /* ID styling */
 
-#next-btn {
+#next-btn  {
     background: var(--second-color);
     color: #fff;
     cursor: pointer;
@@ -83,6 +86,21 @@ body {
     text-align: center;
     transition: all 0.1s;
 }
+
+#start-btn {
+    background: var(--second-color);
+    color: #fff;
+    cursor: pointer;
+    display: hidden; /* until quiz begins */
+    width: 160px;
+    border-radius: 6px; 
+    font-weight: 475;
+    margin: 18px auto 0;
+    padding: 12px;
+    text-align: center;
+    transition: all 0.1s;
+}
+
 
 /* style for the correct and incorrect answer */
 .correct {
